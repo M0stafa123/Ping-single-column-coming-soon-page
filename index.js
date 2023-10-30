@@ -41,6 +41,7 @@ form.onsubmit = function (e) {
     }, 100);
     setTimeout(() => {
       submitted.style.opacity = 0;
+      submitted.style.display = "none";
     }, 5000);
   }
 };

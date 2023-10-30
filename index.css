@@ -3,15 +3,17 @@
 }
 body {
   font-family: "Libre Franklin", sans-serif;
+  position: relative;
 }
+
 .container {
-  width: 800px;
+  max-width: 800px;
   margin: auto;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-flow: column;
-  padding: 20px 0;
+  padding: 60px 0;
 }
 .img {
   width: 450px;
@@ -22,7 +24,7 @@ body {
 }
 
 .container > img {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 .container > h2 {
   font-weight: 300;
@@ -36,6 +38,9 @@ body {
 }
 .container > p {
   margin-top: 5px;
+  margin-bottom: 30px;
+  font-size: 20px;
+  font-weight: 300;
 }
 .container > form {
   display: flex;
@@ -43,11 +48,18 @@ body {
   justify-content: center;
   gap: 10px;
   width: 500px;
-  & input {
-    padding: 15px;
+  .email {
     border-radius: 100px;
     border: 1px solid hsl(223, 100%, 88%);
     flex: 1.8;
+    position: relative;
+  }
+  & input {
+    padding: 15px;
+    border-radius: 100px;
+    border: 0;
+    outline: 0;
+    width: 100%;
     &::placeholder {
       color: hsl(223, 100%, 88%);
     }
@@ -63,6 +75,20 @@ body {
     cursor: pointer;
   }
 }
+.err {
+  border-color: hsl(354, 100%, 66%) !important ;
+  &:has(input:focus) {
+    border-color: hsl(354, 100%, 66%);
+  }
+  & p {
+    color: hsl(354, 100%, 66%);
+    position: absolute;
+    left: 20px;
+    bottom: -25px;
+    margin: 0;
+    font-size: 13px;
+  }
+}
 .contact {
   & section:first-of-type {
     display: flex;
@@ -76,12 +102,18 @@ body {
       height: 30px;
       border-radius: 50%;
       border: 1px solid hsl(0deg 0% 87.4%);
+      cursor: pointer;
+      color: hsl(223, 87%, 63%);
       &::before {
-        color: hsl(223, 87%, 63%);
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+      }
+
+      &:hover {
+        color: white;
+        background-color: hsl(223, 87%, 63%);
       }
     }
   }
@@ -89,5 +121,56 @@ body {
     margin: 10px 0;
     margin-top: 25px;
     color: hsl(0, 0%, 59%);
+  }
+}
+.submitted {
+  position: absolute;
+  bottom: 200px;
+  font-size: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  text-align: center;
+  line-height: 1.8;
+  background-color: hsl(209, 33%, 12%);
+  border-radius: 6px;
+  padding: 10px;
+  box-sizing: content-box;
+  color: #2ecc71;
+  transition: 0.5s;
+  display: none;
+  opacity: 0;
+}
+@media (max-width: 550px) {
+  .err {
+    margin-bottom: 30px;
+    & p {
+      left: 50%;
+      transform: translateX(-50%);
+      width: 260px;
+      font-size: 13px;
+    }
+  }
+  form {
+    flex-flow: column;
+    text-align: center;
+    width: 80% !important;
+
+    & > * {
+      width: 100%;
+      min-width: 250px;
+    }
+  }
+}
+@media (max-width: 460px) {
+  .container h2 {
+    font-size: 25px;
+    margin-bottom: 10px;
+  }
+  .container > p {
+    font-size: 15px;
+  }
+  .img {
+    width: 330px;
   }
 }
